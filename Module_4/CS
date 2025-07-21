@@ -1,0 +1,46 @@
+using System;
+
+namespace DivisionApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the first number: ");
+            string input1 = Console.ReadLine();
+
+            Console.Write("Enter the second number: ");
+            string input2 = Console.ReadLine();
+
+            DivideStrings(input1, input2);
+        }
+
+        static void DivideStrings(string strNum1, string strNum2)
+        {
+            try
+            {
+                int num1 = int.Parse(strNum1);
+                int num2 = int.Parse(strNum2);
+
+                int result = num1 / num2;
+                Console.WriteLine($"Result: {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error: One or both inputs were not valid numbers. Please enter integers only.");
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Error: Division by zero is not allowed.");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Error: One of the numbers is too large or too small for an int.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.GetType().Name} - {ex.Message}");
+            }
+        }
+    }
+}
